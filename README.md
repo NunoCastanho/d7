@@ -15,6 +15,14 @@ d7 goes beyond the traditional, simple rolls and interprets more complex rolling
 
 ## Notation
 
+Using the different notations below, on top of the traditional `XdY`, you can form both simple or complex dice rolling expressions. For example:
+* `1d6+2` - roll one six-sided die, adding two to the result;
+* `2d4rr1+1` - roll two, four-sided die, re-rolling the value one, adding one to the result;
+* `3d6ro<2kh2` - roll three, six-sided dice, re-rolling the value two at most once, keeping the highest two rolls;
+* `6d8rr1mi3kh3!+4` - roll six exploding, eight-sided dice, whose minimum value is three, re-rolling the value one, keeping the highest three, and adding four to the result.
+
+There is a hierarchy between the different notations where the "least" changing ones are executed first. As such, d7 uses the following sequence when resolving dice expressions: `roll()` -> `rr|ro` -> `!` -> `mi` -> `kh|hl` -> `+|-|*|/|/^`
+
 ### <ins>Modifiers</ins>
 
 In addition to the **+** (e.g. `1d6+1`) and **-** (e.g. `1d6-1`) notation which adds or subtracts, respectively, a value from the total sum of the rolls, you can also use the **\*** (e.g. `1d6*2`), **/** (e.g. `2d6/2`), and **/^** (e.g. `3d8/^2`) to multiply, divide (rounded down) or divide (rounded up), respectively.
