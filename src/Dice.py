@@ -68,6 +68,6 @@ class Dice:
 
     def toJSON(self):
         """
-        Returns the JSON dump for this dice.
+        Returns the JSON string for this dice.
         """
         return json.dumps(self, default=lambda o: o.__dict__, sort_keys=True, indent=2)
