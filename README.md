@@ -15,13 +15,13 @@ d7 goes beyond the traditional, simple rolls and interprets more complex rolling
 
 ## Notation
 
-Using the different notations below, on top of the traditional `XdY`, you can form both simple or complex dice rolling expressions. For example:
+Using the different notations below, on top of the traditional `XdY`, you can form both simple or complex dice-rolling expressions. For example:
 * `1d6+2` - roll one six-sided die, adding two to the result;
-* `2d4rr1+1` - roll two, four-sided die, re-rolling the value one, adding one to the result;
+* `2d4rr1+1` - roll two, four-sided dice, re-rolling the value one, adding one to the result;
 * `3d6ro<2kh2` - roll three, six-sided dice, re-rolling the value two at most once, keeping the highest two rolls;
 * `6d8rr1mi3kh3!+4` - roll six exploding, eight-sided dice, whose minimum value is three, re-rolling the value one, keeping the highest three, and adding four to the result.
 
-There is a hierarchy between the different notations where the "least" changing ones are executed first. As such, d7 uses the following sequence when resolving dice expressions: `roll()` -> `rr|ro` -> `!` -> `mi` -> `kh|hl` -> `+|-|*|/|/^`
+There is a hierarchy between the different notations where the "least" changing ones are executed first. As such, d7 uses the following sequence when resolving dice expressions: `roll` -> `rr|ro` -> `!` -> `mi` -> `kh|hl` -> `+|-|*|/|/^`
 
 ### <ins>Modifiers</ins>
 
@@ -55,3 +55,39 @@ Rolling exploding dice is similar to rolling regular dice, with the added fact t
 Using the **!** notation, you can roll exploding dice. By omitting a value afterwards, d7 will use the highest possible die value as the exploding one.
 
 For example, the expression `1d6!` means *"roll one six-sided die, exploding on 6"* and `1d6!3` is *"roll one six-sided die, exploding on 3"*.
+
+## Output
+
+After rolling a dice expression, using the `toJSON()` method you can obtain the JSON formatted string representation of the dice expression.
+
+```
+{
+  "args": {                 # The different arguments of the given dice expression
+    "diceSize": 6,          # The size of the dice
+    "explode": null,        # Whether the dice are exploding dice or not
+    "explodeValue": null,   # The exploding value
+    "keep": null,           # Whether it was a keep highest or keep lowest (or neither) expression
+    "keepValue": null,      # The keeping value
+    "min": null,            # Whether the dice had a minimum value or not
+    "minValue": null,       # The minimum value
+    "mod": null,            # The modifier applied to the expression
+    "modValue": null,       # The value of the modifier
+    "nDice": 1,             # The number of dice
+    "reroll": null,         # Whether it was a re-roll once or re-roll (or neither) expression
+    "rerollValue": null     # The re-roll value
+  },
+  "dice": [                 # The rolled dice
+    {
+      "exploded": false,    # Whether or not the dice was created from an explosion
+      "history": [          # The history of rolls for the dice
+        1
+      ],
+      "keep": true,         # Whether the dice was used in the result calculation
+      "size": 6             # The size of the dice
+    }
+  ],
+  "expression": "1d6",      # The initial expression
+  "maxReroll": 5,           # The maximum number of times a dice can be re-rolled
+  "total": 1                # The result of the roll
+}
+```
