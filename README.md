@@ -1,17 +1,30 @@
+![PyPI](https://img.shields.io/pypi/v/d7)
+
 # d7
 A comprehensive, simple-to-use, Python-based dice notation interpreter and roller.
-
-```
->>> expression = DiceExpression("1d6+2")
->>> expression.roll()
-5
-```
 
 Dice notation is a system used to represent different combinations of dice. It is often used in tabletop role-playing games (TTRPGs) where the number and size of the dice are represented in simple, math-like expressions.
 
 For instance, the expression `1d6` means *"roll one six-sided die"* while `2d4+1` is *"roll two four-sided dice and add one to the result"*.
 
 d7 goes beyond the traditional, simple rolls and interprets more complex rolling expressions normally used in various TTRPGs.
+
+## Usage
+
+Using d7 is very simple. Simply install the package:
+
+```
+pip install d7
+```
+
+Then import as usual, using the `DiceExpression` class from the `dice_expression` module:
+
+```
+>>> from d7 import dice_expression as d7
+>>> expression = d7.DiceExpression("1d6+2")
+>>> expression.roll()
+5
+```
 
 ## Notation
 
